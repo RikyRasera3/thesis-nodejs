@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import {Request, Response} from "express";
 import {Account} from "../model/Account";
-import {IsDateString, IsNotEmpty, IsInt, IsString, MinLength} from "class-validator";
+import {IsDateString, IsNotEmpty, IsInt, IsString, MinLength, ArrayMinSize} from "class-validator";
 
 //-----------------------
 // DTOs
@@ -37,7 +37,7 @@ export class CreateAccountDto implements ICreateAccountDto {
 
     @IsNotEmpty()
     @IsInt({each: true})
-    @MinLength(1)
+    @ArrayMinSize(1)
     roleIds: number[] = null!
 }
 

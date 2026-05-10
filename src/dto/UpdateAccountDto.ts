@@ -2,10 +2,11 @@ import "reflect-metadata";
 import {Response} from "express";
 import {IId, TCustomExpress} from "../util/types";
 import {
+    ArrayMinSize,
     IsDateString, IsInt,
     IsNotEmpty,
     IsOptional,
-    IsString, MinLength
+    IsString
 } from "class-validator";
 
 //-----------------------
@@ -57,7 +58,7 @@ export class UpdateAccountDto implements IUpdateAccountDto {
 
     @IsNotEmpty()
     @IsInt({each: true})
-    @MinLength(1)
+    @ArrayMinSize(1)
     @IsOptional()
     roleIds?: number[] = null!
 }

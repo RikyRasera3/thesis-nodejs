@@ -19,7 +19,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - name: \ Repository
+      - name: Checkout Repository
         id: checkout
         uses: actions/checkout@v6
 

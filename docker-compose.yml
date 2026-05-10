@@ -1,0 +1,17 @@
+name: thesis-nodejs
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: thesis-nodejs-app
+    container_name: thesis-nodejs-app
+    environment:
+      DB_NAME: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+    ports:
+      - "3000:3000"

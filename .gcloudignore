@@ -1,0 +1,14 @@
+.git
+.github
+.idea/
+database/
+dist/
+grafana/
+node_modules/
+src/__test__/
+.env
+.env.custom
+.gcloudignore
+.gitattributes
+.gitignore
+README.md

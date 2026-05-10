@@ -1,0 +1,52 @@
+{
+  "name": "node-js",
+  "version": "1.0.5",
+  "productName": "NodeJS Thesis Comparator",
+  "description": "Thesis's Node JS application for comparison with Spring Boot application",
+  "license": "ISC",
+  "private": true,
+  "author": "Riccardo Rasera",
+  "type": "commonjs",
+  "main": "./dist/main.js",
+  "scripts": {
+    "update-package-version": "npm i --package-lock-only",
+    "ci": "npm ci -s",
+    "build": "tsc",
+    "dev": "nodemon",
+    "start": "node ./dist/main.js"
+  },
+  "dependencies": {
+    "@fastify/express": "^4.0.5",
+    "@sequelize/core": "^7.0.0-alpha.48",
+    "@sequelize/postgres": "^7.0.0-alpha.48",
+    "class-transformer": "^0.5.1",
+    "class-transformer-validator": "^0.9.1",
+    "class-validator": "^0.15.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "fastify": "^5.8.5",
+    "log4js": "^6.9.1",
+    "reflect-metadata": "^0.2.2",
+    "sequelize": "^7.0.0-alpha.9"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.5.0",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.2"
+  },
+  "nodemonConfig": {
+    "exec": "ts-node ./src/main.ts",
+    "ext": "ts",
+    "watch": [
+      "src",
+      ".env",
+      "package.json",
+      "tsconfig.json"
+    ]
+  }
+}

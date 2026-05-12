@@ -1,8 +1,8 @@
 import {Logger} from "log4js";
-import {getAlwaysOnLogger} from "../util/logger";
+import {getLogger} from "../util/logger";
 import {SequelizeHolder} from "../application/Database";
 
-const logger: Logger = getAlwaysOnLogger("Transactional")
+const logger: Logger = getLogger("Transactional")
 
 export function Transactional(): any {
     return (_target: object, methodName: string, propertyDescriptor: PropertyDescriptor): PropertyDescriptor => {

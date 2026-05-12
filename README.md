@@ -252,4 +252,4 @@ with the following configurations:
 ### Configurations
 
 - 1 vCPU
-- 512 MiB RAM
+- 1 GiB RAM

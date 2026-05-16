@@ -40,6 +40,10 @@ export class Database {
             clientMinMessages: "notice",
             logging: this.setLog(),
             benchmark: true,
+            pool: {
+                max: 5,
+                min: 2
+            },
             models: [
                 Account,
                 AccountRole,

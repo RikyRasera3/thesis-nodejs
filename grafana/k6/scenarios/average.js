@@ -2,6 +2,8 @@ import {sleep} from "k6";
 import {searchAccounts, getAccountById, createAccount, deleteAccount, patchAccount} from "../requests/accounts.js";
 import {randomAccountPayload} from "../utils/dtoHelpers.js";
 
+const TAGS = {scenario: "average"};
+
 export const options = {
     stages: [
         {duration: "2m", target: 50},
@@ -17,17 +19,17 @@ export const options = {
     },
     tags: {
         project: "nodejs",
-        scenario: "average"
+        ...TAGS
     }
 };
 
 export default function () {
     // Search a random page wit size 20
-    searchAccounts();
+    searchAccounts(TAGS);
     sleep(1);
 
     // Create a random account
-    const account = JSON.parse(createAccount(randomAccountPayload()).body);
+    const account = JSON.parse(createAccount(randomAccountPayload(), TAGS).body);
 
     if (!account?.id) {
         return;
@@ -36,14 +38,14 @@ export default function () {
     sleep(1);
 
     // Search the account previously created
-    getAccountById(account.id);
+    getAccountById(account.id, TAGS);
     sleep(1);
 
     // Update account previously created
-    patchAccount(account.id, randomAccountPayload());
+    patchAccount(account.id, randomAccountPayload(), TAGS);
     sleep(1);
 
     // Delete account previously created
-    deleteAccount(account.id)
+    deleteAccount(account.id, TAGS)
     sleep(1);
 }

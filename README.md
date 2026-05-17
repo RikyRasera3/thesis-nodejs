@@ -3,6 +3,26 @@
 REST backend built with Node.js, TypeScript, Fastify, Express, and Sequelize for architectural and functional comparison
 with the [Spring Boot](https://github.com/RikyRasera3/thesis-springboot) application.
 
+## Table of Contents
+
+- [Purpose](#purpose)
+- [Technology Stack](#technology-stack)
+- [Prerequisites](#prerequisites)
+- [Available npm Scripts](#available-npm-scripts)
+- [Database Setup](#database-setup)
+- [Docker](#docker)
+- [Project Structure](#project-structure)
+- [Installation & Setup](#installation--setup)
+  - [Install Dependencies](#install-dependencies)
+  - [Run in Development](#run-in-development)
+  - [Build and Run](#build-and-run)
+- [API Endpoints](#api-endpoints)
+  - [Server](#server)
+  - [Account](#account)
+- [Payloads and Parameters](#payloads-and-parameters)
+- [Load Testing](#load-testing)
+- [Test Environment](#test-environment)
+
 ## Purpose
 
 The application exposes a set of endpoints for account management and server status checks. Its behavior will remain 
@@ -25,21 +45,20 @@ aligned with the Spring Boot counterpart so that structure, logic, performance, 
 
 ## Available npm Scripts
 
-- `npm run ci`: Installs dependencies with based on `package-lock.json` dependency tree
+- `npm run ci`: Installs dependencies based on `package-lock.json` dependency tree
 - `npm run build`: Compiles TypeScript into `dist/` folder
 - `npm run dev`: Starts the development server with `nodemon`
 - `npm run start`: Runs the compiled build from `dist/main.js`
 
-## Database Notes
+## Database Setup
 
-Refer to the [README.md](database/README.md) file of `database/` folder for database setup
+Refer to the [README.md](database/README.md) file of the `database/` folder for database setup and configuration.
 
 ## Docker
 
 The Node.js module includes both a `Dockerfile` and a `docker-compose.yml`.
 The Compose setup starts the `app` service, which builds the `thesis-nodejs-app` image and runs the `thesis-nodejs-app`
-container from [Dockerfile](Dockerfile).
-Use these commands from the `thesis-nodejs/` directory to manage the Docker setup:
+container from [Dockerfile](Dockerfile). Use these commands from the `thesis-nodejs/` directory to manage the Docker setup:
 
 ### Build the image
 
@@ -52,6 +71,7 @@ docker compose build
 ```bash
 docker compose up -d
 ```
+
 ### Stop and remove the container
 
 ```bash
@@ -73,13 +93,15 @@ src/
   util/          Shared utilities
 ```
 
-## Install Dependencies
+## Installation & Setup
+
+### Install Dependencies
 
 ```bash
 npm ci
 ```
 
-## Run in Development
+### Run in Development
 
 ```bash
 npm run dev
@@ -88,7 +110,7 @@ npm run dev
 This command uses [nodemon](https://www.npmjs.com/package/nodemon) and [ts-node](https://www.npmjs.com/package/ts-node),
 so the server automatically restarts whenever TypeScript files change.
 
-## Build and Run
+### Build and Run
 
 Build the project:
 
@@ -102,7 +124,9 @@ Run the compiled application:
 npm run start
 ```
 
-## Quick Service Check
+## API Endpoints
+
+### Quick Service Check
 
 Health endpoint:
 
@@ -133,7 +157,6 @@ Expected response:
 }
 ```
 
-## Available APIs
 ### Server
 
 - `GET /server`
@@ -149,6 +172,7 @@ Expected response:
 - `DELETE /accounts/:id`
 
 ## Payloads and Parameters
+
 ### `GET /accounts/search`
 
 Supported query parameters:
@@ -240,6 +264,13 @@ Example:
 ```bash
 curl -X DELETE http://localhost:3000/accounts/1
 ```
+
+## Load Testing
+
+For load testing with k6, Grafana, and InfluxDB, refer to the [grafana/README.md](grafana/README.md) for:
+- Running tests locally and on Google Cloud Compute Engine VMs
+- Setting up InfluxDB and Grafana containers
+- Loading k6 results for visualization
 
 ## Test Environment
 
